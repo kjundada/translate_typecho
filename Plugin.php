@@ -63,11 +63,11 @@ class translate_Plugin implements Typecho_Plugin_Interface
     public static function translate()
     {
         $url = $_SERVER['HTTP_REFERER'];
-        include 'phpQuery/phpQuery.php'; 
+        include 'phpQuery.php'; 
         phpQuery::newDocumentFile('$url'); 
         $artlist = pq("article"); 
         $ch = curl_init();
-        $api = 'http://fanyi.youdao.com/translate?&doctype=json&type=AUTO&i=$artlist'
+        $api = 'http://fanyi.youdao.com/translate?&doctype=json&type=AUTO&i=$artlist';
         $options =  array
         (
             CURLOPT_URL => $api,
@@ -80,11 +80,11 @@ class translate_Plugin implements Typecho_Plugin_Interface
         $obj = json_decode($result);
         $translate = $obj->{'tgt'};
         echo '<section class="widget">
-                <h3 class="widget-title"><?php _e('translate to en'); ?></h3>
+                <h3 class="widget-title"><?php _e(\'translate to en\'); ?></h3>
                 <div align="center">
                     <h5>$translate</h5>
                 </div>
-             </section>'
+             </section>';
     }
 
 }
